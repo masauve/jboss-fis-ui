@@ -9,43 +9,43 @@
 		</FORM>
 		<p id="input"></p>
 	</body>
-	<script>  
-		
+	<script>
+
 		var xhttp = new XMLHttpRequest();
-		
+
 		function makeid(){
 	    var text = "";
 	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	
+
 	    for( var i=0; i < 5; i++ )
 	        text += possible.charAt(Math.floor(Math.random() * possible.length));
-	
+
 	    return text;
 		}
-		
-		  	
-		setInterval(function(){ 
+
+
+		setInterval(function(){
 				gpsstarted=false;
 		    geolongtitude = Math.floor((Math.random()*100)+1);
 		    geolangtitude = Math.floor((Math.random()*100)+1);
-		    console.log("Geo Location longtitude:"+geolongtitude+" langtitude:"+geolangtitude +"<BR/>"); 
-		    
+		    console.log("Geo Location longtitude:"+geolongtitude+" langtitude:"+geolangtitude +"<BR/>");
+
 		    document.getElementById("input").innerHTML = document.getElementById("input").innerHTML+"geolongtitude:"+geolongtitude+" geolangtitude:"+geolangtitude +"<BR/>";
-				
+
 				randonCustName=makeid();
-				
-				var url = "http://gpsservice-demo.rhel-cdk.10.1.2.2.xip.io/AutoDMS/cargps/"+randonCustName+"/"+geolongtitude+","+geolangtitude;      
+
+				var url = "http://gpsservice-mtltech.rhel-cdk.10.1.2.2.xip.io/AutoDMS/cargps/"+randonCustName+"/"+geolongtitude+","+geolangtitude;      
 				xhttp.open("GET", url, true);
 		   	xhttp.send();
 		}, 2000);
-						
-						
-  
-  	
-  
-					
-			
-			
+
+
+
+
+
+
+
+
 	</script>
-	
+
 </html>

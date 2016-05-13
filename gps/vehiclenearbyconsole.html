@@ -70,41 +70,41 @@ var divMid='</strong> ';
 var alertDiv='<div class="ui-widget"><div class="ui-state-error ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"><p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><strong>ALERT:';
 var divEnd='</p></div></div>';
 
-	var wsUri = "ws://dealeralert-demo.rhel-cdk.10.1.2.2.xip.io/demo"; 
-	function doWebSocket() { 
+	var wsUri = "ws://dealeralert-mtltech.rhel-cdk.10.1.2.2.xip.io//demo"; 
+	function doWebSocket() {
 		websocket = new WebSocket(wsUri);
 	 	websocket.onopen = function(evt) { onOpen(evt) };
 	 	websocket.onclose = function(evt) { onClose(evt) };
 	 	websocket.onmessage = function(evt) { onMessage(evt) };
 	 	websocket.onerror = function(evt) { onError(evt) };
-	} 
-	function onOpen(evt) { console.log('CONNECTED');} 
-	function onClose(evt) { console.log('DISCONNECTED');} 
+	}
+	function onOpen(evt) { console.log('CONNECTED');}
+	function onClose(evt) { console.log('DISCONNECTED');}
 	function onMessage(evt) {
 		var resultJson = jQuery.parseJSON( evt.data );
-		
+
 		console.log("resultJson msgType:"+resultJson.msgType+" resultJson custName:"+resultJson.custName);
-		
+
 		var resultMsg = "";
 		if(resultJson.msgType=='1'){
 			resultMsg = warningDiv+resultJson.custName+divMid+resultJson.warningMsg+divEnd;
 		}else if(resultJson.msgType=='2'){
 			resultMsg = alertDiv+resultJson.custName+divMid+resultJson.warningMsg+divEnd;
 		}
-		
-		$("#displayconsole").append(resultMsg);	
-	} 
-	function onError(evt) {console.log('ERROR:' + evt.data);} 
-		
-		
-	
-	
+
+		$("#displayconsole").append(resultMsg);
+	}
+	function onError(evt) {console.log('ERROR:' + evt.data);}
+
+
+
+
 	setInterval(function() {
-		
+
     $('.ui-widget').children().first().remove();
     console.log('fadeOut');
 	}, 10000);
-	
+
 	doWebSocket();
 
 // Hover states on the static widgets
